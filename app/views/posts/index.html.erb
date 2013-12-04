@@ -5,13 +5,10 @@
     <tr>
       <th>Title</th>
       <th>Ct name</th>
-      <th>Unique code</th>
-      <th>Detail url</th>
       <th>Upload time</th>
       <th>Content</th>
       <th>Phone n</th>
       <th>Rent m</th>
-      <th>Site source</th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,15 +18,12 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
+        <td><a href='<%= post.detail_url %>'> <%= post.title%> </a></td>
         <td><%= post.ct_name %></td>
-        <td><%= post.unique_code %></td>
-        <td><%= post.detail_url %></td>
-        <td><%= post.upload_time %></td>
+        <td><%= post.up_time.strftime("%F") %></td>
         <td><%= post.content %></td>
         <td><%= post.phone_n %></td>
         <td><%= post.rent_m %></td>
-        <td><%= post.site_source %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
