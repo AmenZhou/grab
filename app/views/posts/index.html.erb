@@ -1,6 +1,6 @@
 <h1>Listing posts</h1>
 
-<table border="1" width="400">
+<table border="1" width="400" id='post'>
   <thead>
     <tr>
       <th>Title</th>
@@ -31,6 +31,12 @@
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#post').dataTable();
+} );
+</script>
 
 <br>
 
