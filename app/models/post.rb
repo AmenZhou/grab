@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-  def Post::grasp_dadi
+  def Post::grab_dadi
     page_array = [0]#[0,25,50,75,100]
     region_array = [{:id => 26, :name => 'queen'},
                     {:id => 46, :name => 'bronx'},
