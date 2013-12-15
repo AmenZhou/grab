@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    Post.grab_dadi
     @posts = Post.order('upload_time desc').all
   end
 
