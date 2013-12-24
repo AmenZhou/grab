@@ -1,11 +1,11 @@
-<h1>Listing posts</h1>
+<h1>租房信息</h1>
 
-<table border="1" width="400" id='post'>
+<table border="1" width="1000" id='post'>
   <thead>
     <tr>
       <th>Title</th>
       <th>Ct name</th>
-      <th>Upload time</th>
+      <th>Up time</th>
       <th>Content</th>
       <th>Phone n</th>
       <th>Rent m</th>
@@ -18,7 +18,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><a href='<%= post.detail_url %>'> <%= post.title%> </a></td>
+   		<td><%= post.title %></td>
         <td><%= post.ct_name %></td>
         <td><%= post.up_time.strftime("%F") %></td>
         <td><%= post.content %></td>
