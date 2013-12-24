@@ -1,0 +1,43 @@
+<h1>Listing posts</h1>
+
+<table border="1" width="400" id='post_dd_housale'>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Ct name</th>
+      <th>Upload time</th>
+      <th>Content</th>
+      <th>Phone n</th>
+      <th>Rent m</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @post_dd_housales.each do |post_dd_housale| %>
+      <tr>
+        <td><a href='<%= post_dd_housale.detail_url %>'> <%= post_dd_housale.title%> </a></td>
+        <td><%= post_dd_housale.ct_name %></td>
+        <td><%= post_dd_housale.up_time.strftime("%F") %></td>
+        <td><%= post_dd_housale.content %></td>
+        <td><%= post_dd_housale.phone_n %></td>
+        <td><%= post_dd_housale.rent_m %></td>
+        <td><%= link_to 'Show', post_dd_housale %></td>
+        <td><%= link_to 'Edit', edit_post_path(post_dd_housale) %></td>
+        <td><%= link_to 'Destroy', post_dd_housale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#post_dd_housale').dataTable();
+} );
+</script>
+
+<br>
+
+<%= link_to 'New Post', new_post_path %>

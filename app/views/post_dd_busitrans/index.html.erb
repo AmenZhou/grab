@@ -1,0 +1,45 @@
+<h1>Listing post_dd_busitrans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Ct name</th>
+      <th>Unique code</th>
+      <th>Detail url</th>
+      <th>Upload time</th>
+      <th>Content</th>
+      <th>Phone n</th>
+      <th>Rent m</th>
+      <th>Site source</th>
+      <th>Up time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @post_dd_busitrans.each do |post_dd_busitran| %>
+      <tr>
+        <td><%= post_dd_busitran.title %></td>
+        <td><%= post_dd_busitran.ct_name %></td>
+        <td><%= post_dd_busitran.unique_code %></td>
+        <td><%= post_dd_busitran.detail_url %></td>
+        <td><%= post_dd_busitran.upload_time %></td>
+        <td><%= post_dd_busitran.content %></td>
+        <td><%= post_dd_busitran.phone_n %></td>
+        <td><%= post_dd_busitran.rent_m %></td>
+        <td><%= post_dd_busitran.site_source %></td>
+        <td><%= post_dd_busitran.up_time %></td>
+        <td><%= link_to 'Show', post_dd_busitran %></td>
+        <td><%= link_to 'Edit', edit_post_dd_busitran_path(post_dd_busitran) %></td>
+        <td><%= link_to 'Destroy', post_dd_busitran, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post dd busitran', new_post_dd_busitran_path %>

@@ -1,4 +1,8 @@
 Grab::Application.routes.draw do
+  resources :post_dd_busitrans
+
+  resources :post_dd_housales
+
   resources :posts
   root 'application#home'
   get 'grab_dadi' => 'application#grab_dadi'

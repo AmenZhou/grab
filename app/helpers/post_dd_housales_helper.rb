@@ -1,0 +1,2 @@
+module PostDdHousalesHelper
+end

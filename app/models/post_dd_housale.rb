@@ -1,11 +1,8 @@
-class Post < ActiveRecord::Base
+class PostDdHousale < ActiveRecord::Base
 
-  def Post::grab_dadi
+  def PostDdHousale::grab_dd_housale
     page_array = [0]#[0,25,50,75,100]
-    region_array = [{:id => 26, :name => 'queen'},
-                    {:id => 46, :name => 'bronx'},
-                    {:id => 47, :name => 'manhattan'},
-                    {:id => 48, :name => 'elmhurst'}]
+    region_array = [{:id => 36, :name => 'NY'}]
     require "open-uri"
     count = 0
     arr_list = Array.new
@@ -23,10 +20,10 @@ class Post < ActiveRecord::Base
         end 
       end
     end
-    code_list = Post.where(:site_source => 'dadi').map(&:unique_code)
+    code_list = PostDdHousale.where(:site_source => 'dadi').map(&:unique_code)
     arr_list.each do |unit|
       unless code_list.include? unit[:unique_code]
-        post = Post.new
+        post = PostDdHousale.new
         detail_url = 'http://c.dadi360.com/' + unit[:detail_url]
         begin
           doc = Nokogiri::HTML(open(detail_url))
@@ -55,5 +52,3 @@ class Post < ActiveRecord::Base
     count
   end
 end
-
-
