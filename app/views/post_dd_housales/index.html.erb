@@ -1,6 +1,6 @@
 <h1>Listing posts</h1>
 
-<table border="1" width="400" id='post_dd_housale'>
+<table border="1" width="1000" id='post_dd_housale'>
   <thead>
     <tr>
       <th>Title</th>
@@ -18,7 +18,8 @@
   <tbody>
     <% @post_dd_housales.each do |post_dd_housale| %>
       <tr>
-        <td><a href='<%= post_dd_housale.detail_url %>'> <%= post_dd_housale.title%> </a></td>
+		<td><%= post_dd_housale.title %></td>
+    <!--    <td><%= post_dd_housale.detail_url %></td>  -->
         <td><%= post_dd_housale.ct_name %></td>
         <td><%= post_dd_housale.up_time.strftime("%F") %></td>
         <td><%= post_dd_housale.content %></td>
@@ -40,4 +41,4 @@ $(document).ready(function() {
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post dd housale', new_post_dd_housale_path %>

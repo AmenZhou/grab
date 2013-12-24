@@ -4,6 +4,7 @@ class PostDdBusitransController < ApplicationController
   # GET /post_dd_busitrans
   # GET /post_dd_busitrans.json
   def index
+    PostDdBusitran.grab_dd_busitran
     @post_dd_busitrans = PostDdBusitran.all
   end
 
