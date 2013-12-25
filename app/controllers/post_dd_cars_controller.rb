@@ -4,6 +4,7 @@ class PostDdCarsController < ApplicationController
   # GET /post_dd_cars
   # GET /post_dd_cars.json
   def index
+    PostDdCar.grab_dd_car
     @post_dd_cars = PostDdCar.all
   end
 
