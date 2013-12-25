@@ -4,6 +4,7 @@ class PostRecruitsController < ApplicationController
   # GET /post_recruits
   # GET /post_recruits.json
   def index
+    PostRecruit.grab_dd_recruit
     @post_recruits = PostRecruit.all
   end
 
