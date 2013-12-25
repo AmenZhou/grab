@@ -1,4 +1,6 @@
 Grab::Application.routes.draw do
+  resources :post_recruits
+
   resources :post_dd_busitrans
 
   resources :post_dd_housales

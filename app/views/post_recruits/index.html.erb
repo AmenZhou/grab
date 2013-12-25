@@ -1,0 +1,45 @@
+<h1>Listing post_recruits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Ct name</th>
+      <th>Unique code</th>
+      <th>Detail url</th>
+      <th>Upload time</th>
+      <th>Content</th>
+      <th>Phone n</th>
+      <th>Rent m</th>
+      <th>Site source</th>
+      <th>Up time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @post_recruits.each do |post_recruit| %>
+      <tr>
+        <td><%= post_recruit.title %></td>
+        <td><%= post_recruit.ct_name %></td>
+        <td><%= post_recruit.unique_code %></td>
+        <td><%= post_recruit.detail_url %></td>
+        <td><%= post_recruit.upload_time %></td>
+        <td><%= post_recruit.content %></td>
+        <td><%= post_recruit.phone_n %></td>
+        <td><%= post_recruit.rent_m %></td>
+        <td><%= post_recruit.site_source %></td>
+        <td><%= post_recruit.up_time %></td>
+        <td><%= link_to 'Show', post_recruit %></td>
+        <td><%= link_to 'Edit', edit_post_recruit_path(post_recruit) %></td>
+        <td><%= link_to 'Destroy', post_recruit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post recruit', new_post_recruit_path %>
