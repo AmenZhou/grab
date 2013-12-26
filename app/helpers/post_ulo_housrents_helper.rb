@@ -1,0 +1,2 @@
+module PostUloHousrentsHelper
+end

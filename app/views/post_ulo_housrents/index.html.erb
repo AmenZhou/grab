@@ -1,0 +1,45 @@
+<h1>Listing post_ulo_housrents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Ct name</th>
+      <th>Unique code</th>
+      <th>Detail url</th>
+      <th>Upload time</th>
+      <th>Content</th>
+      <th>Phone n</th>
+      <th>Rent m</th>
+      <th>Site source</th>
+      <th>Up time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @post_ulo_housrents.each do |post_ulo_housrent| %>
+      <tr>
+        <td><%= post_ulo_housrent.title %></td>
+        <td><%= post_ulo_housrent.ct_name %></td>
+        <td><%= post_ulo_housrent.unique_code %></td>
+        <td><%= post_ulo_housrent.detail_url %></td>
+        <td><%= post_ulo_housrent.upload_time %></td>
+        <td><%= post_ulo_housrent.content %></td>
+        <td><%= post_ulo_housrent.phone_n %></td>
+        <td><%= post_ulo_housrent.rent_m %></td>
+        <td><%= post_ulo_housrent.site_source %></td>
+        <td><%= post_ulo_housrent.up_time %></td>
+        <td><%= link_to 'Show', post_ulo_housrent %></td>
+        <td><%= link_to 'Edit', edit_post_ulo_housrent_path(post_ulo_housrent) %></td>
+        <td><%= link_to 'Destroy', post_ulo_housrent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post ulo housrent', new_post_ulo_housrent_path %>

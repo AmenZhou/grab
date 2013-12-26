@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  ct_name: MyString
+  unique_code: MyString
+  detail_url: MyString
+  upload_time: 2013-12-26 18:48:58
+  content: MyText
+  phone_n: MyString
+  rent_m: MyString
+  site_source: MyString
+  up_time: 2013-12-26 18:48:58
+
+two:
+  title: MyString
+  ct_name: MyString
+  unique_code: MyString
+  detail_url: MyString
+  upload_time: 2013-12-26 18:48:58
+  content: MyText
+  phone_n: MyString
+  rent_m: MyString
+  site_source: MyString
+  up_time: 2013-12-26 18:48:58
