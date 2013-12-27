@@ -1,4 +1,6 @@
 Grab::Application.routes.draw do
+  resources :post_ulo_busitrans
+
   resources :post_ulo_houesales
 
   resources :post_ulo_housrents
