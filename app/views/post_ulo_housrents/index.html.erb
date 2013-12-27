@@ -1,18 +1,13 @@
-<h1>Listing post_ulo_housrents</h1>
+<h1>美国生活在线--租房信息</h1>
 
-<table>
+<table border="1" width="1000" id='post_ulo_housrent'>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Ct name</th>
-      <th>Unique code</th>
-      <th>Detail url</th>
-      <th>Upload time</th>
-      <th>Content</th>
-      <th>Phone n</th>
-      <th>Rent m</th>
-      <th>Site source</th>
-      <th>Up time</th>
+      <th>标题</th>
+	  <th>发布时间</th>
+      <th>内容</th>
+      <th>联系电话</th>
+      <th>房租价格</th>
       <th></th>
       <th></th>
       <th></th>
@@ -23,15 +18,10 @@
     <% @post_ulo_housrents.each do |post_ulo_housrent| %>
       <tr>
         <td><%= post_ulo_housrent.title %></td>
-        <td><%= post_ulo_housrent.ct_name %></td>
-        <td><%= post_ulo_housrent.unique_code %></td>
-        <td><%= post_ulo_housrent.detail_url %></td>
-        <td><%= post_ulo_housrent.upload_time %></td>
+		<td><%= post_ulo_housrent.up_time.strftime("%F") %></td>
         <td><%= post_ulo_housrent.content %></td>
-        <td><%= post_ulo_housrent.phone_n %></td>
+        <td style='width:100px'><%= post_ulo_housrent.phone_n %></td>
         <td><%= post_ulo_housrent.rent_m %></td>
-        <td><%= post_ulo_housrent.site_source %></td>
-        <td><%= post_ulo_housrent.up_time %></td>
         <td><%= link_to 'Show', post_ulo_housrent %></td>
         <td><%= link_to 'Edit', edit_post_ulo_housrent_path(post_ulo_housrent) %></td>
         <td><%= link_to 'Destroy', post_ulo_housrent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -39,6 +29,12 @@
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#post_ulo_housrent').dataTable();
+} );
+</script>
 
 <br>
 

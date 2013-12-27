@@ -4,6 +4,7 @@ class PostUloHousrentsController < ApplicationController
   # GET /post_ulo_housrents
   # GET /post_ulo_housrents.json
   def index
+	PostUloHousrent.grab_ulo_housrent
     @post_ulo_housrents = PostUloHousrent.all
   end
 
