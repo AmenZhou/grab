@@ -1,18 +1,14 @@
-<h1>Listing post_ulo_houesales</h1>
+<h1>美国生活在线--房屋买卖</h1>
 
-<table>
+<table border="1" width="1000" id='post_ulo_houesale'>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Ct name</th>
-      <th>Unique code</th>
-      <th>Detail url</th>
-      <th>Upload time</th>
-      <th>Content</th>
-      <th>Phone n</th>
-      <th>Rent m</th>
-      <th>Site source</th>
-      <th>Up time</th>
+      <th>标题</th>
+	  <th>发布时间</th>
+      <th>房屋类型</th>
+      <th>内容</th>
+      <th>联系电话</th>
+      <th>房屋价格</th>
       <th></th>
       <th></th>
       <th></th>
@@ -23,15 +19,29 @@
     <% @post_ulo_houesales.each do |post_ulo_houesale| %>
       <tr>
         <td><%= post_ulo_houesale.title %></td>
-        <td><%= post_ulo_houesale.ct_name %></td>
-        <td><%= post_ulo_houesale.unique_code %></td>
-        <td><%= post_ulo_houesale.detail_url %></td>
-        <td><%= post_ulo_houesale.upload_time %></td>
+        <td><%= post_ulo_houesale.up_time.strftime("%F") %></td>
+		<% if post_ulo_houesale.ct_name == 'Real estate' %>
+			<td style="width:100px;">房地产中介</td>
+		<% elsif post_ulo_houesale.ct_name == 'Whole House' %>
+			<td style="width:100px;">整栋出售</td>
+		<% elsif post_ulo_houesale.ct_name == 'Department' %>
+			<td style="width:100px;">公寓出售</td>
+		<% elsif post_ulo_houesale.ct_name == 'Condo' %>
+			<td style="width:100px;">康斗出售</td>
+		<% elsif post_ulo_houesale.ct_name == 'Business' %>
+			<td style="width:100px;">商铺出售</td>
+		<% elsif post_ulo_houesale.ct_name == 'Office' %>
+			<td style="width:100px;">办公出售</td>
+		<% elsif post_ulo_houesale.ct_name == 'Public' %>
+			<td style="width:100px;">房屋公展</td>
+		<% elsif post_ulo_houesale.ct_name == 'Else' %>
+			<td style="width:100px;">其他</td>			
+		<% else %>
+			<td style="width:100px;"><%= post_ulo_houesale.ct_name %></td>
+		<% end %>		
         <td><%= post_ulo_houesale.content %></td>
-        <td><%= post_ulo_houesale.phone_n %></td>
+        <td style="width:100px;"><%= post_ulo_houesale.phone_n %></td>
         <td><%= post_ulo_houesale.rent_m %></td>
-        <td><%= post_ulo_houesale.site_source %></td>
-        <td><%= post_ulo_houesale.up_time %></td>
         <td><%= link_to 'Show', post_ulo_houesale %></td>
         <td><%= link_to 'Edit', edit_post_ulo_houesale_path(post_ulo_houesale) %></td>
         <td><%= link_to 'Destroy', post_ulo_houesale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -39,6 +49,12 @@
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#post_ulo_houesale').dataTable();
+} );
+</script>
 
 <br>
 
