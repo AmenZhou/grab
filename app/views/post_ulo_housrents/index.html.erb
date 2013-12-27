@@ -5,6 +5,7 @@
     <tr>
       <th>标题</th>
 	  <th>发布时间</th>
+	  <th>租房类型</th>
       <th>内容</th>
       <th>联系电话</th>
       <th>房租价格</th>
@@ -19,6 +20,19 @@
       <tr>
         <td><%= post_ulo_housrent.title %></td>
 		<td><%= post_ulo_housrent.up_time.strftime("%F") %></td>
+		<% if post_ulo_housrent.ct_name == 'Single Room' %>
+			<td style="width:100px;">单房出租</td>
+		<% elsif post_ulo_housrent.ct_name == 'Whole House' %>
+			<td style="width:100px;">整套出租</td>
+		<% elsif post_ulo_housrent.ct_name == 'Short Time' %>
+			<td style="width:100px;">短期租房</td>
+		<% elsif post_ulo_housrent.ct_name == 'Else' %>
+			<td style="width:100px;">其他租房</td>
+		<% elsif post_ulo_housrent.ct_name == 'Wanna Rent' %>
+			<td style="width:100px;">我要租房</td>
+		<% else %>
+			<td style="width:100px;"><%= post_ulo_housrent.ct_name %></td>
+		<% end %>
         <td><%= post_ulo_housrent.content %></td>
         <td style='width:100px;'><%= post_ulo_housrent.phone_n %></td>
         <td><%= post_ulo_housrent.rent_m %></td>
