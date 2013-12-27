@@ -4,15 +4,11 @@
   <thead>
     <tr>
       <th>标题</th>
+	  <th>发布时间</th>
       <th>公司类型</th>
-      <!-- <th>Unique code</th> -->
-      <!-- <th>Detail url</th> -->
-      <!-- <th>Upload time</th> -->
       <th>内容</th>
       <th>电话号码</th>
       <th>工资</th>
-      <th>信息来源</th>
-      <th>发布时间</th>
       <th></th>
       <th></th>
       <th></th>
@@ -23,6 +19,7 @@
     <% @post_recruits.each do |post_recruit| %>
       <tr>
         <td><%= post_recruit.title %></td>
+		<td><%= post_recruit.up_time.strftime("%F") %></td>
 		<% if post_recruit.ct_name == "Recruit employees" %>
 			<td style = "width:100px;">其他招聘</td>
 		<% elsif post_recruit.ct_name == "Restaurant" %>
@@ -34,14 +31,9 @@
 		<% else %>
 			<td style = "width:100px;"><%= post_recruit.ct_name %></td>
 		<% end %>
-        <!-- <td><%= post_recruit.unique_code %></td> -->
-        <!-- <td><%= post_recruit.detail_url %></td> -->
-        <!-- <td><%= post_recruit.upload_time %></td> -->
         <td><%= post_recruit.content %></td>
-        <td><%= post_recruit.phone_n %></td>
+        <td style="width:100px;"><%= post_recruit.phone_n %></td>
         <td><%= post_recruit.rent_m %></td>
-        <td><%= post_recruit.site_source %></td>
-        <td><%= post_recruit.up_time.strftime("%F") %></td>
         <td><%= link_to 'Show', post_recruit %></td>
         <td><%= link_to 'Edit', edit_post_recruit_path(post_recruit) %></td>
         <td><%= link_to 'Destroy', post_recruit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
