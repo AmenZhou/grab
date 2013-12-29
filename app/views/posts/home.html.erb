@@ -1,11 +1,27 @@
+<%-#encoding: utf-8%>
 <h1>
 分类数据抓取页面
 </h1>
 
+<h3>
+number:
+</h3>
+<%= select_tag "grab_lines", "<option>10</option><option>20</option><option>30</option><option>40</option><option>50</option>".html_safe %>
+
+<script>
+  $('document').ready(function(){
+    $('form').append('<input id="default" type="hidden" name="post[grab_lines]" value="10">')
+    $('#grab_lines').change(function(){
+      var line_number = $('#grab_lines').val();
+      $('form input#default').empty();
+      $('form').append('<input type="hidden" name="post[grab_lines]" value="'+ line_number +'">')
+    });
+  });
+</script>
 <table>
 	<tr>
 		<td>
-			<%= button_to '大地360-租房信息', {controller: 'posts', action: 'index'}, method: :get%>
+      <%= button_to '大地360-租房信息', grab_dadi_posts_path, method: :post %>
 		</td>
 		
 		<td>

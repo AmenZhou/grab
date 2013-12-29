@@ -4,9 +4,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    Post.grab_dadi
     @posts = Post.order('upload_time desc').all
   end
+  
+  def grab_dadi
+    Post.grab_dadi post_params[:grab_lines].to_i
+    redirect_to action: :index
+  end
+  
 
   # GET /posts/1
   # GET /posts/1.json
@@ -69,7 +74,7 @@ class PostsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source)
+  def post_params
+      params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source)
     end
 end
