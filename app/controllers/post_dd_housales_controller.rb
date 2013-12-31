@@ -4,10 +4,13 @@ class PostDdHousalesController < ApplicationController
   # GET /post_dd_housales
   # GET /post_dd_housales.json
   def index
-	PostDdHousale.grab_dd_housale
     @post_dd_housales = PostDdHousale.all
   end
-
+  
+  def grab_dd_housale
+    PostDdHousale.grab_dd_housale post_dd_housale_params[:grab_lines].to_i
+    redirect_to action: :index
+  end
   # GET /post_dd_housales/1
   # GET /post_dd_housales/1.json
   def show
@@ -70,6 +73,7 @@ class PostDdHousalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_dd_housale_params
+      debugger
       params.require(:post_dd_housale).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
     end
 end

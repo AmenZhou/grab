@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
   
   def grab_dadi
+    debugger
     Post.grab_dadi post_params[:grab_lines].to_i
     redirect_to action: :index
   end

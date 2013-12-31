@@ -1,11 +1,13 @@
 class PostDdHousale < ActiveRecord::Base
 
-  def PostDdHousale::grab_dd_housale
+  def PostDdHousale::grab_dd_housale(limit = 10)
     page_array = [0]#[0,25,50,75,100]
     region_array = [{:id => 36, :name => 'NY'}]
     require "open-uri"
     count = 0
+    number = 10
     arr_list = Array.new
+    code_list = Post.where(:site_source => 'dadi').map(&:unique_code)
     page_array.each do |page|
       region_array.each do |region|
         doc = Nokogiri::HTML(open("http://c.dadi360.com/c/forums/show/" + page.to_s + "/" + region[:id].to_s + ".page"))
@@ -17,10 +19,12 @@ class PostDdHousale < ActiveRecord::Base
           unit[:title] = order.css('span[class="topictitle"]').text.strip
           unit[:up_time] = order.css('td[class*="row3"]').text.strip
           arr_list << unit 
+          number += 1 unless code_list.include? unit[:unique_code]
+          break if number >= limit
         end 
       end
     end
-    code_list = PostDdHousale.where(:site_source => 'dadi').map(&:unique_code)
+    
     arr_list.each do |unit|
       unless code_list.include? unit[:unique_code]
         post = PostDdHousale.new

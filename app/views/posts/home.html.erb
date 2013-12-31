@@ -3,10 +3,12 @@
 分类数据抓取页面
 </h1>
 
+<br/>
 <h3>
-number:
+抓取行数
 </h3>
 <%= select_tag "grab_lines", "<option>10</option><option>20</option><option>30</option><option>40</option><option>50</option>".html_safe %>
+<br/>
 
 <script>
   $('document').ready(function(){
@@ -25,7 +27,7 @@ number:
 		</td>
 		
 		<td>
-			<%= button_to '大地360-房屋买卖', {controller: 'post_dd_housales', action: 'index'}, method: :get%>
+			<%= button_to '大地360-房屋买卖', grab_dd_housale_post_dd_housales_path, method: :post%>
 		</td>
 
 		<td>

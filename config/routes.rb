@@ -11,11 +11,14 @@ Grab::Application.routes.draw do
 
   resources :post_dd_busitrans
 
-  resources :post_dd_housales
-
-  resources :posts do 
+  resources :posts do
     post 'grab_dadi' => 'posts#grab_dadi', on: :collection
   end
+
+  resources :post_dd_housales do 
+    post 'grab_dd_housale' => 'post_dd_housales#grab_dd_housale', on: :collection
+  end
+  
   root 'application#home'
   get 'grab_dadi' => 'application#grab_dadi'
 
