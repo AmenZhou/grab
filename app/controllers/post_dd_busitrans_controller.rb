@@ -4,10 +4,14 @@ class PostDdBusitransController < ApplicationController
   # GET /post_dd_busitrans
   # GET /post_dd_busitrans.json
   def index
-    PostDdBusitran.grab_dd_busitran
     @post_dd_busitrans = PostDdBusitran.all
   end
 
+  def grab_dd_busitran
+    PostDdBusitran.grab_dd_busitran post_dd_busitran_params[:grab_lines].to_i
+    redirect_to action: :index
+  end
+  
   # GET /post_dd_busitrans/1
   # GET /post_dd_busitrans/1.json
   def show
@@ -70,6 +74,6 @@ class PostDdBusitransController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_dd_busitran_params
-      params.require(:post_dd_busitran).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
+      params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
     end
 end

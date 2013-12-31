@@ -5,7 +5,7 @@ class PostDdHousale < ActiveRecord::Base
     region_array = [{:id => 36, :name => 'NY'}]
     require "open-uri"
     count = 0
-    number = 10
+    number = 0
     arr_list = Array.new
     code_list = Post.where(:site_source => 'dadi').map(&:unique_code)
     page_array.each do |page|

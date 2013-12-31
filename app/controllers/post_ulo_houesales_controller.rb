@@ -4,10 +4,13 @@ class PostUloHouesalesController < ApplicationController
   # GET /post_ulo_houesales
   # GET /post_ulo_houesales.json
   def index
-    PostUloHouesale.grab_ulo_houesale
     @post_ulo_houesales = PostUloHouesale.all
   end
 
+  def grab_ulo_houesale
+	PostUloHouesale.grab_ulo_houesale post_ulo_houesale_params[:grab_lines].to_i
+	redirect_to action: :index
+  end
   # GET /post_ulo_houesales/1
   # GET /post_ulo_houesales/1.json
   def show
@@ -70,6 +73,6 @@ class PostUloHouesalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_ulo_houesale_params
-      params.require(:post_ulo_houesale).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
+      params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
     end
 end

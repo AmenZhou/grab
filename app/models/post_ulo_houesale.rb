@@ -1,7 +1,8 @@
 require 'open-uri'
 
 class PostUloHouesale < ActiveRecord::Base
-	def PostUloHouesale::grab_ulo_houesale
+	def PostUloHouesale::grab_ulo_houesale(limit = 10)
+		number = 0
 		page_array = [1]
 		region_array = [{:id => 1, :name => ''}]
 		fid_array = [{:id => 236, :name => 'Real estate'},
@@ -13,6 +14,7 @@ class PostUloHouesale < ActiveRecord::Base
 						{:id => 242, :name => 'Public'},
 						{:id => 392, :name => 'Else'}]
 		arr_list = Array.new
+		code_list = PostRecruit.where(:site_source => 'dadi').map(&:unique_code)
 		#grab page data , put into arr_list
 		page_array.each do |page|
 			region_array.each do |region|
@@ -25,12 +27,13 @@ class PostUloHouesale < ActiveRecord::Base
 						unit[:title] = order.css('a').attr('title').value
 						unit[:ct_name] = fid[:name]
 						arr_list << unit
+						number += 1 unless code_list.include? unit[:unique_code]
+						break if number >= limit
 					end
 				end
 			end
 		end
 		#take unique code from database
-		code_list = PostUloHouesale.where(:site_source => 'ulo').map(&:unique_code)
 		arr_list.each do |unit|											
 			#compare unique codes, if one line has been grabbed, avoid grabbing its detail page again
 			unless code_list.include? unit[:unique_code]

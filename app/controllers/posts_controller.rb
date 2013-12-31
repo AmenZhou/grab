@@ -8,7 +8,6 @@ class PostsController < ApplicationController
   end
   
   def grab_dadi
-    debugger
     Post.grab_dadi post_params[:grab_lines].to_i
     redirect_to action: :index
   end
@@ -75,7 +74,7 @@ class PostsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-  def post_params
+	def post_params
       params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source)
     end
 end

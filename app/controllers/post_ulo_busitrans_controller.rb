@@ -4,8 +4,12 @@ class PostUloBusitransController < ApplicationController
   # GET /post_ulo_busitrans
   # GET /post_ulo_busitrans.json
   def index
-	PostUloBusitran.grab_ulo_busitran
     @post_ulo_busitrans = PostUloBusitran.all
+  end
+  
+  def grab_ulo_busitran
+	PostUloBusitran.grab_ulo_busitran post_ulo_busitran_params[:grab_lines].to_i
+	redirect_to action: :index
   end
 
   # GET /post_ulo_busitrans/1
@@ -70,6 +74,6 @@ class PostUloBusitransController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_ulo_busitran_params
-      params.require(:post_ulo_busitran).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
+      params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
     end
 end

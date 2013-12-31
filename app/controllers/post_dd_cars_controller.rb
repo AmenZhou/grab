@@ -4,10 +4,13 @@ class PostDdCarsController < ApplicationController
   # GET /post_dd_cars
   # GET /post_dd_cars.json
   def index
-    PostDdCar.grab_dd_car
+    
     @post_dd_cars = PostDdCar.all
   end
-
+  def grab_dd_car
+	PostDdCar.grab_dd_car post_dd_car_params[:grab_lines].to_i
+    redirect_to action: :index
+  end
   # GET /post_dd_cars/1
   # GET /post_dd_cars/1.json
   def show
@@ -70,6 +73,6 @@ class PostDdCarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_dd_car_params
-      params.require(:post_dd_car).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
+      params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
     end
 end

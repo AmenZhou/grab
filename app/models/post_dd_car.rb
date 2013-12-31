@@ -1,11 +1,13 @@
 class PostDdCar < ActiveRecord::Base
 
-  def PostDdCar::grab_dd_car
+  def PostDdCar::grab_dd_car(limit = 10)
     page_array = [0]#[0,25,50,75,100]
     region_array = [{:id => 82, :name => 'cars deel'}]
     require "open-uri"
     count = 0
+	number = 0
     arr_list = Array.new
+	code_list = PostRecruit.where(:site_source => 'dadi').map(&:unique_code)
     page_array.each do |page|
       region_array.each do |region|
         doc = Nokogiri::HTML(open("http://c.dadi360.com/c/forums/show/" + page.to_s + "/" + region[:id].to_s + ".page"))
@@ -16,11 +18,13 @@ class PostDdCar < ActiveRecord::Base
           unit[:unique_code] = unit[:detail_url][/\d+/]
           unit[:title] = order.css('span[class="topictitle"]').text.strip
           unit[:up_time] = order.css('td[class*="row3"]').text.strip
-          arr_list << unit 
+          arr_list << unit
+		  number += 1 unless code_list.include? unit[:unique_code]
+          break if number >= limit		  
         end 
       end
     end
-    code_list = PostDdCar.where(:site_source => 'dadi').map(&:unique_code)
+
     arr_list.each do |unit|
       unless code_list.include? unit[:unique_code]
         post = PostDdCar.new

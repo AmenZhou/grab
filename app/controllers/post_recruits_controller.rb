@@ -3,11 +3,15 @@ class PostRecruitsController < ApplicationController
 
   # GET /post_recruits
   # GET /post_recruits.json
-  def index
-    PostRecruit.grab_dd_recruit
+  def index   
     @post_recruits = PostRecruit.all
   end
 
+  def grab_dd_recruit
+    PostRecruit.grab_dd_recruit post_recruit_params[:grab_lines].to_i
+    redirect_to action: :index
+  end
+  
   # GET /post_recruits/1
   # GET /post_recruits/1.json
   def show
@@ -70,6 +74,6 @@ class PostRecruitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_recruit_params
-      params.require(:post_recruit).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
+      params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
     end
 end

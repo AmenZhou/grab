@@ -1,15 +1,27 @@
 Grab::Application.routes.draw do
-  resources :post_ulo_busitrans
+  resources :post_ulo_busitrans do
+	post 'grab_ulo_busitran' => 'post_ulo_busitrans#grab_ulo_busitran', on: :collection
+  end
 
-  resources :post_ulo_houesales
+  resources :post_ulo_houesales do
+	post 'grab_ulo_houesale' => 'post_ulo_houesales#grab_ulo_houesale', on: :collection
+  end
 
-  resources :post_ulo_housrents
+  resources :post_ulo_housrents do
+	post 'grab_ulo_housrent' => 'post_ulo_housrents#grab_ulo_housrent', on: :collection
+  end
 
-  resources :post_dd_cars
+  resources :post_dd_cars do
+	post 'grab_dd_car' => 'post_dd_cars#grab_dd_car', on: :collection
+  end
 
-  resources :post_recruits
+  resources :post_recruits do
+	post 'grab_dd_recruit' => 'post_recruits#grab_dd_recruit', on: :collection
+  end
 
-  resources :post_dd_busitrans
+  resources :post_dd_busitrans do
+	post 'grab_dd_busitran' => 'post_dd_busitrans#grab_dd_busitran', on: :collection
+  end
 
   resources :posts do
     post 'grab_dadi' => 'posts#grab_dadi', on: :collection
@@ -20,7 +32,6 @@ Grab::Application.routes.draw do
   end
   
   root 'application#home'
-  get 'grab_dadi' => 'application#grab_dadi'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

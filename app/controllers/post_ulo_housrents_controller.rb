@@ -4,10 +4,13 @@ class PostUloHousrentsController < ApplicationController
   # GET /post_ulo_housrents
   # GET /post_ulo_housrents.json
   def index
-	PostUloHousrent.grab_ulo_housrent
     @post_ulo_housrents = PostUloHousrent.all
   end
 
+  def grab_ulo_housrent
+	PostUloHousrent.grab_ulo_housrent post_ulo_housrent_params[:grab_lines].to_i
+	redirect_to action: :index
+  end
   # GET /post_ulo_housrents/1
   # GET /post_ulo_housrents/1.json
   def show
@@ -70,6 +73,6 @@ class PostUloHousrentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_ulo_housrent_params
-      params.require(:post_ulo_housrent).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
+      params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
     end
 end

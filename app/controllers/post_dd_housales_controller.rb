@@ -73,7 +73,6 @@ class PostDdHousalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_dd_housale_params
-      debugger
-      params.require(:post_dd_housale).permit(:title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
+      params.require(:post).permit(:grab_lines, :title, :ct_name, :unique_code, :detail_url, :upload_time, :content, :phone_n, :rent_m, :site_source, :up_time)
     end
 end

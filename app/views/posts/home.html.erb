@@ -31,29 +31,29 @@
 		</td>
 
 		<td>
-			<%= button_to '大地360-生意转让', {controller: 'post_dd_busitrans', action: 'index'}, method: :get%>
+			<%= button_to '大地360-生意转让', grab_dd_busitran_post_dd_busitrans_path, method: :post%>
 		</td>
 
 		<td>
-			<%= button_to '大地360-招聘请人', {controller: 'post_recruits', action: 'index'}, method: :get%>
+			<%= button_to '大地360-招聘请人', grab_dd_recruit_post_recruits_path, method: :post%>
 		</td>
 
 		<td>
-			<%= button_to '大地360-汽车买卖', {controller: 'post_dd_cars', action: 'index'}, method: :get%>
+			<%= button_to '大地360-汽车买卖', grab_dd_car_post_dd_cars_path, method: :post%>
 		</td>
 	</tr>
 	
 	<tr>
 		<td>
-			<%= button_to '美国生活在线-租房信息', {controller: 'post_ulo_housrents', action: 'index'}, method: :get%>
+			<%= button_to '美国生活在线-租房信息', grab_ulo_housrent_post_ulo_housrents_path, method: :post%>
 		</td>
 		
 		<td>
-			<%= button_to '美国生活在线-房屋买卖', {controller: 'post_ulo_houesales', action: 'index'}, method: :get%>
+			<%= button_to '美国生活在线-房屋买卖', grab_ulo_houesale_post_ulo_houesales_path, method: :post%>
 		</td>
 		
 		<td>
-			<%= button_to '美国生活在线-生意转让', {controller: 'post_ulo_busitrans', action: 'index'}, method: :get%>
+			<%= button_to '美国生活在线-生意转让', grab_ulo_busitran_post_ulo_busitrans_path, method: :post%>
 		</td>
 	</tr>
 </table>
