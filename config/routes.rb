@@ -11,26 +11,10 @@ Grab::Application.routes.draw do
 	post 'grab_ulo_housrent' => 'post_ulo_housrents#grab_ulo_housrent', on: :collection
   end
 
-  resources :post_dd_cars do
-	post 'grab_dd_car' => 'post_dd_cars#grab_dd_car', on: :collection
-  end
-
-  resources :post_recruits do
-	post 'grab_dd_recruit' => 'post_recruits#grab_dd_recruit', on: :collection
-  end
-
-  resources :post_dd_busitrans do
-	post 'grab_dd_busitran' => 'post_dd_busitrans#grab_dd_busitran', on: :collection
-  end
-
   resources :posts do
     post 'grab_dadi' => 'posts#grab_dadi', on: :collection
   end
 
-  resources :post_dd_housales do 
-    post 'grab_dd_housale' => 'post_dd_housales#grab_dd_housale', on: :collection
-  end
-  
   root 'application#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

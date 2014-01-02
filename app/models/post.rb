@@ -1,16 +1,37 @@
 class Post < ActiveRecord::Base
 
-  def Post::grab_dadi(limit=10)
+  def Post::grab_dadi(grab_lines = 10, grab_source = 'dadi_housrent_flushing')
     page_array = [0]#[0,25,50,75,100]
-    region_array = [{:id => 26, :name => 'queen'},
-                    {:id => 46, :name => 'bronx'},
-                    {:id => 47, :name => 'manhattan'},
-                    {:id => 48, :name => 'elmhurst'}]
+	
+	if grab_source == 'dadi_housrent_flusing'
+		region_array = [{:id => 26, :name => 'Flushing'}]
+	elsif grab_source == 'dadi_housrent_manhattan'
+		region_array = [{:id => 47, :name => 'Manhattan'}]
+	elsif grab_source == 'dadi_housrent_queens'
+		region_array = [{:id => 53, :name => 'Queens'}]
+	elsif grab_source == 'dadi_housrent_brooklyn'
+		region_array = [{:id => 46, :name => 'Brooklyn'}]
+	elsif grab_source == 'dadi_housrent_elmhurst'	
+		region_array = [{:id => 48, :name => 'Elmhurst'}]		
+	elsif grab_source == 'dadi_housale'
+		region_array = [{:id => 36, :name => ''}]		
+	elsif grab_source == 'dadi_busitran'
+		region_array = [{:id => 27, :name => ''}]		
+	elsif grab_source == 'dadi_recruit'
+		region_array = [{:id => 29, :name => 'Recruit employees'},
+						{:id => 57, :name => 'Restaurant'},
+						{:id => 56, :name => 'Nails and Barbor'},
+						{:id => 52, :name => 'Massage'}]		
+	elsif grab_source == 'dadi_car'
+		region_array = [{:id => 82, :name => ''}]		
+	end
+	
     require "open-uri"
     count = 0
     number = 0
     arr_list = Array.new
-    code_list = Post.where(:site_source => 'dadi').map(&:unique_code)
+    code_list = Post.where(:site_source => grab_source).map(&:unique_code)
+	
     page_array.each do |page|
       region_array.each do |region|
         doc = Nokogiri::HTML(open("http://c.dadi360.com/c/forums/show/" + page.to_s + "/" + region[:id].to_s + ".page"))
@@ -23,7 +44,7 @@ class Post < ActiveRecord::Base
           unit[:up_time] = order.css('td[class*="row3"]').text.strip
           arr_list << unit 
           number += 1 unless code_list.include? unit[:unique_code]
-          break if number >= limit
+          break if number >= grab_lines
         end 
       end
     end
@@ -51,7 +72,7 @@ class Post < ActiveRecord::Base
         post.content = content
         post.phone_n = content[/\d{3}.?\d{3}.?\d{4}/]
         post.rent_m = content[/\$\d+/]
-        post.site_source = "dadi"
+        post.site_source = grab_source
         post.save   
         count += 1
       end
