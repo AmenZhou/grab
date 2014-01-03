@@ -1,0 +1,103 @@
+<h1>美国生活在线-分类数据抓取结果</h1>
+
+<table border="1" width="1000" id='post_ulo'>
+  <thead>
+    <tr>
+      <th>标题</th>
+	  <th>分类名称</th>
+      <th>细类名称</th>
+      <th>发布时间</th>
+      <th>内容</th>
+      <th>联系电话</th>
+      <th>价格/工资</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @post_ulos.each do |post_ulo| %>
+      <tr>
+        <td><%= post_ulo.title %></td>
+		<% if post_ulo.site_source == 'ulo_housrent'%>
+			<td>租房信息</td>
+		<% elsif post_ulo.site_source == 'ulo_housale'%>
+			<td>房屋买卖</td>
+		<% elsif post_ulo.site_source == 'ulo_busitran'%>
+			<td>生意转让</td>
+		<% elsif post_ulo.site_source == 'ulo_recruit'%>
+			<td>招聘请人</td>
+		<% else %>
+			<td><%= post_ulo.site_source %></td>
+		<% end %>
+		
+		<% if post_ulo.ct_name == 'Single Room' %>
+			<td>单房出租</td>
+		<% elsif post_ulo.ct_name == 'Whole House' %>
+			<td>整房出租</td>
+		<% elsif post_ulo.ct_name == 'Short Time' %>
+			<td>短期租房</td>	
+		<% elsif post_ulo.ct_name == 'Else' %>
+			<td>其他</td>
+		<% elsif post_ulo.ct_name == 'Wanna Rent' %>
+			<td>求租房</td>
+		<% elsif post_ulo.ct_name == 'Real estate' %>
+			<td>地产中介</td>
+		<% elsif post_ulo.ct_name == 'Whole House Sale' %>
+			<td>整栋出售</td>
+		<% elsif post_ulo.ct_name == 'Department' %>
+			<td>公寓出售</td>
+		<% elsif post_ulo.ct_name == 'Condo' %>
+			<td>康斗出售</td>
+		<% elsif post_ulo.ct_name == 'Business' %>
+			<td>门面房出售</td>
+		<% elsif post_ulo.ct_name == 'Office' %>
+			<td>办公室出售</td>
+		<% elsif post_ulo.ct_name == 'Public' %>
+			<td>公展</td>
+		<% elsif post_ulo.ct_name == 'Restaurant Business'%>
+			<td>餐馆转让</td>
+		<% elsif post_ulo.ct_name == 'Nails Business'%>
+			<td>美甲店转让</td>
+		<% elsif post_ulo.ct_name == 'Massage Business'%>
+			<td>按摩店转让</td>
+		<% elsif post_ulo.ct_name == 'Laudary'%>
+			<td>洗衣房转让</td>
+		<% elsif post_ulo.ct_name == 'Restaurant Recruit'%>
+			<td>餐馆招人</td>		
+		<% elsif post_ulo.ct_name == 'Nails Recruit'%>	
+			<td>美甲招人</td>
+		<% elsif post_ulo.ct_name == 'Massage Recruit'%>	
+			<td>按摩招人</td>
+		<% elsif post_ulo.ct_name == 'Secretary'%>	
+			<td>办公室文员</td>
+		<% elsif post_ulo.ct_name == 'Barber'%>	
+			<td>美发招人</td>
+		<% elsif post_ulo.ct_name == 'Driver'%>
+			<td>招司机</td>
+		<% elsif post_ulo.ct_name == 'Clinic'%>	
+			<td>诊所招人</td>
+		<% else %>		
+			<td><%= post_ulo.ct_name %></td>
+		<% end %>
+		<td><%= post_ulo.up_time.strftime("%F") %></td>
+        <td><%= post_ulo.content %></td>
+        <td><%= post_ulo.phone_n %></td>
+        <td><%= post_ulo.rent_m %></td>
+        <td><%= link_to 'Show', post_ulo %></td>
+        <td><%= link_to 'Edit', edit_post_ulo_path(post_ulo) %></td>
+        <td><%= link_to 'Destroy', post_ulo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#post_ulo').dataTable();
+} );
+</script>
+<br>
+
+<%= link_to 'New Post ulo', new_post_ulo_path %>

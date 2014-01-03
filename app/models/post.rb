@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   def Post::grab_dadi(grab_lines = 10, grab_source = 'dadi_housrent_flushing')
     page_array = [0]#[0,25,50,75,100]
 	
-	if grab_source == 'dadi_housrent_flusing'
+	if grab_source == 'dadi_housrent_flushing'
 		region_array = [{:id => 26, :name => 'Flushing'}]
 	elsif grab_source == 'dadi_housrent_manhattan'
 		region_array = [{:id => 47, :name => 'Manhattan'}]
@@ -23,7 +23,9 @@ class Post < ActiveRecord::Base
 						{:id => 56, :name => 'Nails and Barbor'},
 						{:id => 52, :name => 'Massage'}]		
 	elsif grab_source == 'dadi_car'
-		region_array = [{:id => 82, :name => ''}]		
+		region_array = [{:id => 82, :name => ''}]
+	else
+		region_array = [{:id => 82, :name => ''}]
 	end
 	
     require "open-uri"

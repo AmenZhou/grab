@@ -1,4 +1,8 @@
 Grab::Application.routes.draw do
+  resources :post_ulos do
+	post 'grab_ulo' => 'post_ulos#grab_ulo', on: :collection
+  end
+
   resources :post_ulo_busitrans do
 	post 'grab_ulo_busitran' => 'post_ulo_busitrans#grab_ulo_busitran', on: :collection
   end
