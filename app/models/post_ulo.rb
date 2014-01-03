@@ -9,13 +9,15 @@ class PostUlo < ActiveRecord::Base
 				{:id => 246, :name => 'Whole House'},
 				{:id => 461, :name => 'Short Time'},
 				{:id => 394, :name => 'Else'},
-				{:id => 460, :name => 'Wanna Rent'}]
+				{:id => 460, :name => 'Wanna Rent'},
+				{:id => 245, :name => 'Shop Rent'},
+				{:id => 249, :name => 'Office Rent'}]
 		elsif grab_source == 'ulo_housale'
 			fid_array = [{:id => 236, :name => 'Real estate'},
 				{:id => 237, :name => 'Whole House Sale'},
 				{:id => 239, :name => 'Department'},
 				{:id => 241, :name => 'Condo'},
-				{:id => 238, :name => 'Business'},
+				{:id => 238, :name => 'Shop Sale'},
 				{:id => 243, :name => 'Office'},
 				{:id => 242, :name => 'Public'},
 				{:id => 392, :name => 'Else'}]
@@ -33,7 +35,8 @@ class PostUlo < ActiveRecord::Base
 					{:id => 365, :name => 'Secretary'},
 					{:id => 443, :name => 'Barber'},
 					{:id => 260, :name => 'Driver'},
-					{:id => 364, :name => 'Clinic'}]
+					{:id => 364, :name => 'Clinic'},
+					{:id => 261, :name => 'Look for Job'}]
 		else
 			fid_array = [{:id => 247, :name => 'Single Room'},
 				{:id => 246, :name => 'Whole House'},

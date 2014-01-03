@@ -1,5 +1,8 @@
 <h1>美国生活在线-分类数据抓取结果</h1>
-
+<br/>
+<h3>点击项目名称可以排序，比如点击“发布时间”可以按照时间排序显示；
+<br/>
+右侧的搜索框可以对抓取结果进行筛选</h3>
 <table border="1" width="1000" id='post_ulo'>
   <thead>
     <tr>
@@ -50,8 +53,8 @@
 			<td>公寓出售</td>
 		<% elsif post_ulo.ct_name == 'Condo' %>
 			<td>康斗出售</td>
-		<% elsif post_ulo.ct_name == 'Business' %>
-			<td>门面房出售</td>
+		<% elsif post_ulo.ct_name == 'Shop Sale' %>
+			<td>商铺出售</td>
 		<% elsif post_ulo.ct_name == 'Office' %>
 			<td>办公室出售</td>
 		<% elsif post_ulo.ct_name == 'Public' %>
@@ -78,6 +81,12 @@
 			<td>招司机</td>
 		<% elsif post_ulo.ct_name == 'Clinic'%>	
 			<td>诊所招人</td>
+		<% elsif post_ulo.ct_name == 'Look for Job'%>
+			<td>求职</td>
+		<% elsif post_ulo.ct_name == 'Shop Rent'%>
+			<td>店面出租</td>
+		<% elsif post_ulo.ct_name == 'Office Rent'%>
+			<td>办公室出租</td>
 		<% else %>		
 			<td><%= post_ulo.ct_name %></td>
 		<% end %>
