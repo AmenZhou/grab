@@ -53,7 +53,7 @@
 		<% else %>
 			<td style = "width:100px;"><%= post.ct_name %></td>
 		<% end %>
-        <td><%= post.up_time.strftime("%F") %></td>
+        <td><%= post.up_time.strftime("%F") unless post.up_time.nil?%></td>
         <td><%= post.content %></td>
         <td style="width:100px;"><%= post.phone_n %></td>
         <td><%= post.rent_m %></td>

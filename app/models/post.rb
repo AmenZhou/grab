@@ -1,5 +1,9 @@
 class Post < ActiveRecord::Base
 
+	def Post_clear_ulo
+			Post.where("up_time < ?", (Time.now - 7.day)).destroy_all
+	end
+	
   def Post::grab_dadi(grab_lines = 10, grab_source = 'dadi_housrent_flushing')
     page_array = [0]#[0,25,50,75,100]
 	
@@ -50,7 +54,7 @@ class Post < ActiveRecord::Base
         end 
       end
     end
-    
+	
     arr_list.each do |unit|
       unless code_list.include? unit[:unique_code]
         post = Post.new

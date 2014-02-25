@@ -1,6 +1,7 @@
 Grab::Application.routes.draw do
   resources :post_ulos do
 	post 'grab_ulo' => 'post_ulos#grab_ulo', on: :collection
+	get 'clear_ulo' => 'post_ulos#clear_ulo', on: :collection
   end
 
   resources :post_ulo_busitrans do
@@ -18,7 +19,7 @@ Grab::Application.routes.draw do
   resources :posts do
     post 'grab_dadi' => 'posts#grab_dadi', on: :collection
   end
-
+  
   root 'application#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

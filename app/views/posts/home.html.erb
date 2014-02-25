@@ -84,5 +84,7 @@
 	<%= select_tag "grab_source_ulo", "<option>租房信息</option><option>房屋买卖</option><option>生意转让</option><option>招聘求职</option>".html_safe %>
 	<br/>
 	<%= button_to '美国生活在线--开始抓取', grab_ulo_post_ulos_path, method: :post%>
+	<br/>
+	<%= button_to '清除过期数据', clear_ulo_post_ulos_path, method: :get%>
 </span>
 

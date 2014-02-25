@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(:site_source => params[:select_source]).order('upload_time desc').all
+    @posts = Post.order('upload_time desc').all
   end
   
   def grab_dadi

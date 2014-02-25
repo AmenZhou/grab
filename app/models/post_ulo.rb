@@ -1,6 +1,10 @@
 require 'open-uri'
 
 class PostUlo < ActiveRecord::Base
+	def PostUlo::clear_ulo
+			PostUlo.where("up_time < ?", (Time.now - 7.day)).destroy_all
+	end
+	
 	def PostUlo::grab_ulo(grab_lines = 10, grab_source = 'ulo_housrent')
 		page_array = [1]
 		region_array = [{:id => 1, :name => ''}]
@@ -67,6 +71,7 @@ class PostUlo < ActiveRecord::Base
 				end
 			end
 		end
+		
 		#take unique code from database
 		arr_list.each do |unit|											
 			#compare unique codes, if one line has been grabbed, avoid grabbing its detail page again
