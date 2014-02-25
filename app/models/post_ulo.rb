@@ -3,6 +3,7 @@ require 'open-uri'
 class PostUlo < ActiveRecord::Base
 	def PostUlo::clear_ulo
 			PostUlo.where("up_time < ?", (Time.now - 7.day)).destroy_all
+			Post.where("up_time < ?", (Time.now - 7.day)).destroy_all
 	end
 	
 	def PostUlo::grab_ulo(grab_lines = 10, grab_source = 'ulo_housrent')

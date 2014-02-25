@@ -14,7 +14,6 @@ class PostUlosController < ApplicationController
 	
 	def clear_ulo
 		PostUlo.clear_ulo
-		@Post_clear_ulo
 		render 'posts/home'
 	end
   # GET /post_ulos/1

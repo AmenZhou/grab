@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-	def Post_clear_ulo
+	def Post::clear_ulo
 			Post.where("up_time < ?", (Time.now - 7.day)).destroy_all
 	end
 	
