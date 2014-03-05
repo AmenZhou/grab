@@ -79,6 +79,22 @@ class Post < ActiveRecord::Base
         post.phone_n = content[/\d{3}.?\d{3}.?\d{4}/]
         post.rent_m = content[/\$\d+/]
         post.site_source = grab_source
+				
+				post.image_url = ''
+				post.image_thumb = ''
+				attach_block = doc.css('td[class="attachrow"]')
+				attach_block.each do |code|
+					next if code.css('a') == nil || code.css('img') == nil
+					image_download_url_t = code.css('a').attr('href').value[/^.*page/]
+					image_thumb_url_t = code.css('img').attr('src').value[/^.*thumb/]
+					
+					image_download_url = 'http://c.dadi360.com/' + image_download_url_t
+					image_thumb_url = 'http://c.dadi360.com/' + image_thumb_url_t
+					
+					post.image_url += image_download_url
+					post.image_thumb += image_thumb_url						
+				end
+				
         post.save   
         count += 1
       end

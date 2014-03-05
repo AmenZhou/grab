@@ -10,56 +10,66 @@
       <th>内容</th>
       <th>联系电话</th>
       <th>价格/工资</th>
-      <th></th>
-      <th></th>
-      <th></th>
+			<th>图片</th>
     </tr>
   </thead>
 
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-   		<td><%= post.title %></td>
-		<% if post.site_source == "dadi_housrent_flushing"%>
-			<td>法拉盛租房</td>
-		<% elsif post.site_source == "dadi_housrent_manhattan"%>
-			<td>曼哈顿租房</td>
-		<% elsif post.site_source == "dadi_housrent_queens"%>
-			<td>皇后区租房</td>
-		<% elsif post.site_source == "dadi_housrent_brooklyn"%>
-			<td>布碌仑租房</td>
-		<% elsif post.site_source == "dadi_housrent_elmhurst"%>
-			<td>艾姆赫斯特租房</td>			
-		<% elsif post.site_source == "dadi_housale"%>
-			<td>房屋买卖</td>
-		<% elsif post.site_source == "dadi_recruit"%>
-			<td>招聘请人</td>
-		<% elsif post.site_source == "dadi_car"%>
-			<td>汽车买卖</td>
-		<% elsif post.site_source == "dadi_busitran"%>
-			<td>生意转让</td>
-		<% else %>
-			<td><%= post.site_source %></td>
-		<% end %>
-		
-		<% if post.ct_name == "Recruit employees" %>
-			<td style = "width:100px;">其他招聘</td>
-		<% elsif post.ct_name == "Restaurant" %>
-			<td style = "width:100px;">餐馆招聘</td>
-		<% elsif post.ct_name == "Nails and Barbor" %>	
-			<td style = "width:100px;">美容美甲招聘</td>
-		<% elsif post.ct_name == "Massage" %>	
-			<td style = "width:100px;">按摩请人</td>
-		<% else %>
-			<td style = "width:100px;"><%= post.ct_name %></td>
-		<% end %>
-        <td><%= post.up_time.strftime("%F") unless post.up_time.nil?%></td>
-        <td><%= post.content %></td>
-        <td style="width:100px;"><%= post.phone_n %></td>
-        <td><%= post.rent_m %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				<td><%= post.title %></td>
+				
+				<% if post.site_source == "dadi_housrent_flushing"%>
+					<td>法拉盛租房</td>
+				<% elsif post.site_source == "dadi_housrent_manhattan"%>
+					<td>曼哈顿租房</td>
+				<% elsif post.site_source == "dadi_housrent_queens"%>
+					<td>皇后区租房</td>
+				<% elsif post.site_source == "dadi_housrent_brooklyn"%>
+					<td>布碌仑租房</td>
+				<% elsif post.site_source == "dadi_housrent_elmhurst"%>
+					<td>艾姆赫斯特租房</td>			
+				<% elsif post.site_source == "dadi_housale"%>
+					<td>房屋买卖</td>
+				<% elsif post.site_source == "dadi_recruit"%>
+					<td>招聘请人</td>
+				<% elsif post.site_source == "dadi_car"%>
+					<td>汽车买卖</td>
+				<% elsif post.site_source == "dadi_busitran"%>
+					<td>生意转让</td>
+				<% else %>
+					<td><%= post.site_source %></td>
+				<% end %>
+				
+				<% if post.ct_name == "Recruit employees" %>
+					<td style = "width:100px;">其他招聘</td>
+				<% elsif post.ct_name == "Restaurant" %>
+					<td style = "width:100px;">餐馆招聘</td>
+				<% elsif post.ct_name == "Nails and Barbor" %>	
+					<td style = "width:100px;">美容美甲招聘</td>
+				<% elsif post.ct_name == "Massage" %>	
+					<td style = "width:100px;">按摩请人</td>
+				<% else %>
+					<td style = "width:100px;"><%= post.ct_name %></td>
+				<% end %>
+				
+				<td><%= post.up_time.strftime("%F") unless post.up_time.nil?%></td>
+				<td><%= post.content %></td>
+				<td style="width:100px;"><%= post.phone_n %></td>
+				<td><%= post.rent_m %></td>
+				<td>
+					<% if post.image_thumb != nil || post.image_url != nil %>
+						<% image_thumb = post.image_thumb.scan(/http:\/\/.*?thumb/) %>
+						<% image_url = post.image_url.scan(/http:\/\/.*?page/) %>
+						<% image_thumb.each_with_index do |thumb, index|%>
+							<% if image_url[index] != nil%>
+								<span class="thumb_list">
+								<%= link_to image_tag(thumb, height:'200'), image_url[index]%>							
+								</span>
+							<% end %>
+						<% end %>
+					<% end %>
+				</td>
       </tr>
     <% end %>
   </tbody>
