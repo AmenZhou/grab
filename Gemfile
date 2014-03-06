@@ -46,3 +46,4 @@ gem 'debugger', group: [:development, :test]
 gem 'nokogiri'
 gem 'rails_12factor', group: :production
 gem 'pg', group: :production
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: 'master'

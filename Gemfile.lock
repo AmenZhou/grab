@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: 8079dc3803d73d3db434072cb55548f76f0bd088
+  branch: master
+  specs:
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -126,6 +134,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-sass!
   coffee-rails (~> 4.0.0)
   debugger
   jbuilder (~> 1.2)

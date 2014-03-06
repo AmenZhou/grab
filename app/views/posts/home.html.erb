@@ -1,5 +1,5 @@
 <%-#encoding: utf-8%>
-<h1>
+<h1 class="center">
 分类数据抓取页面
 </h1>
 <script>
@@ -16,26 +16,7 @@
 	  $('form[action="/posts/grab_dadi"]').append('<input id="source_id" type="hidden" name="post[grab_source]" value="dadi_housrent_flushing">')
 
 	  $('#grab_source').change(function(){
-		  if ($('#grab_source').val() == "法拉盛租房")
-			var select_source = "dadi_housrent_flushing";
-		  else if ($('#grab_source').val() == "曼哈顿租房")
-			var select_source = "dadi_housrent_manhattan";
-		  else if ($('#grab_source').val() == "皇后区租房")
-			var select_source = "dadi_housrent_queens";
-		  else if ($('#grab_source').val() == "布碌仑租房")
-			var select_source = "dadi_housrent_brooklyn";
-		  else if ($('#grab_source').val() == "艾姆赫斯特租房")
-			var select_source = "dadi_housrent_elmhurst";
-		  else if ($('#grab_source').val() == "房屋买卖")
-			var select_source = "dadi_housale";
-		  else if ($('#grab_source').val() == "生意转让")
-			var select_source = "dadi_busitran";
-		  else if ($('#grab_source').val() == "招聘请人")
-			var select_source = "dadi_recruit";
-		  else if ($('#grab_source').val() == "汽车买卖")
-			var select_source = "dadi_car";
-		  else 
-			var select_source = "dadi_housrent_flushing"
+		  var select_source = $('#grab_source').val();
 		
 		  $('form input#source_id').remove();
 		  $('form[action="/posts/grab_dadi"]').append('<input id="source_id" type="hidden" name="post[grab_source]" value="'+ select_source +'">')
@@ -46,16 +27,7 @@
 	  $('form[action="/post_ulos/grab_ulo"]').append('<input id="source_ulo_id" type="hidden" name="post[grab_source]" value="ulo_housrent">')
 
 	  $('#grab_source_ulo').change(function(){
-		  if ($('#grab_source_ulo').val() == "租房信息")
-			var select_source = "ulo_housrent";
-		  else if ($('#grab_source_ulo').val() == "房屋买卖")
-			var select_source = "ulo_housale";
-		  else if ($('#grab_source_ulo').val() == "生意转让")
-			var select_source = "ulo_busitran";
-		  else if ($('#grab_source_ulo').val() == "招聘求职")
-			var select_source = "ulo_recruit";
-		  else 
-			var select_source = "ulo_housrent"
+			var select_source = $('#grab_source_ulo').val();
 		
 		  $('form input#source_ulo_id').remove();
 		  $('form[action="/post_ulos/grab_ulo"]').append('<input id="source_ulo_id" type="hidden" name="post[grab_source]" value="'+ select_source +'">')
@@ -63,28 +35,51 @@
 	});
 </script>
 <br/>
-<h3>
-提示：如果抓取速度过慢，请耐心等待。如果没有找到你要内容，请多抓几次。
-<br/>
-<br/>
-抓取行数
-</h3>
-<%= select_tag "grab_lines", "<option>10</option><option>20</option><option>30</option><option>40</option><option>50</option>".html_safe %>
-<br/>
 
-<span>
-	<h3>大地360--抓取分类选择</h3>
-	<%= select_tag "grab_source", "<option>法拉盛租房</option><option>曼哈顿租房</option><option>皇后区租房</option><option>布碌仑租房</option><option>艾姆赫斯特租房</option><option>房屋买卖</option><option>生意转让</option><option>招聘请人</option><option>汽车买卖</option>".html_safe %>
-	<br/>
-	<%= button_to '大地360--开始抓取', grab_dadi_posts_path, method: :post %>
-</span>
+<div class="form">
+	<div class="form-group">
+		<label>提示：如果抓取速度过慢，请耐心等待。如果没有找到你要内容，请多抓几次。</label>
+	</div>
+	<div class="form-group">
+		<label for="grab_lines">抓取行数</label>
+		<select id="grab_lines" class="form-control">
+			<option>10</option>
+			<option>20</option>
+			<option>30</option>
+			<option>40</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="grab_source">大地360--抓取分类选择</label>
+		<select id="grab_source" class="form-control">
+			<option value="dadi_housrent_flushing">法拉盛租房</option>
+			<option value="dadi_housrent_manhattan">曼哈顿租房</option>
+			<option value="dadi_housrent_queens">皇后区租房</option>
+			<option value="dadi_housrent_brooklyn">布碌仑租房</option>
+			<option value="dadi_housrent_elmhurst">艾姆赫斯特租房</option>
+			<option value="dadi_housale">房屋买卖</option>
+			<option value="dadi_busitran">生意转让</option>
+			<option value="dadi_recruit">招聘请人</option>
+			<option value="dadi_car">汽车买卖</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<%= button_to '大地360--开始抓取', grab_dadi_posts_path, method: :post, class:"btn btn-primary"%>
+	</div>
 
-<span>	
-	<h3>美国生活在线--抓取分类选择</h3>
-	<%= select_tag "grab_source_ulo", "<option>租房信息</option><option>房屋买卖</option><option>生意转让</option><option>招聘求职</option>".html_safe %>
-	<br/>
-	<%= button_to '美国生活在线--开始抓取', grab_ulo_post_ulos_path, method: :post%>
-	<br/>
-	<%= button_to '清除过期数据', clear_ulo_post_ulos_path, method: :get%>
-</span>
-
+	<div class="form-group">
+		<label for="grab_source_ulo">美国生活在线--抓取分类选择</label>
+		<select id="grab_source_ulo" class="form-control">
+			<option value="ulo_housrent">租房信息</option>
+			<option value="ulo_housale">房屋买卖</option>
+			<option value="ulo_busitran">生意转让</option>
+			<option value="ulo_recruit">招聘求职</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<%= button_to '美国生活在线--开始抓取', grab_ulo_post_ulos_path, method: :post, class:"btn btn-primary"%>
+	</div>
+	<div class="form-group">
+		<%= button_to '清除过期数据', clear_ulo_post_ulos_path, method: :get, class:"btn btn-default"%>
+	</div>
+</div>

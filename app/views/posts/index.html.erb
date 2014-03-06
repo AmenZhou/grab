@@ -1,6 +1,6 @@
 <h1>大地360分类抓取结果页面</h1>
 
-<table border="1" width="1000" id='post'>
+<table id='post' class="table table-bordered table-responsive">
   <thead>
     <tr>
       <th>标题</th>
@@ -42,20 +42,20 @@
 				<% end %>
 				
 				<% if post.ct_name == "Recruit employees" %>
-					<td style = "width:100px;">其他招聘</td>
+					<td>其他招聘</td>
 				<% elsif post.ct_name == "Restaurant" %>
-					<td style = "width:100px;">餐馆招聘</td>
+					<td>餐馆招聘</td>
 				<% elsif post.ct_name == "Nails and Barbor" %>	
-					<td style = "width:100px;">美容美甲招聘</td>
+					<td>美容美甲招聘</td>
 				<% elsif post.ct_name == "Massage" %>	
-					<td style = "width:100px;">按摩请人</td>
+					<td>按摩请人</td>
 				<% else %>
-					<td style = "width:100px;"><%= post.ct_name %></td>
+					<td><%= post.ct_name %></td>
 				<% end %>
 				
 				<td><%= post.up_time.strftime("%F") unless post.up_time.nil?%></td>
 				<td><%= post.content %></td>
-				<td style="width:100px;"><%= post.phone_n %></td>
+				<td><%= post.phone_n %></td>
 				<td><%= post.rent_m %></td>
 				<td>
 					<% if post.image_thumb != nil || post.image_url != nil %>
