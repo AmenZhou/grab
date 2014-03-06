@@ -63,8 +63,8 @@
 						<% image_url = post.image_url.scan(/http:\/\/.*?page/) %>
 						<% image_thumb.each_with_index do |thumb, index|%>
 							<% if image_url[index] != nil%>
-								<span class="thumb_list">
-								<%= link_to image_tag(thumb, height:'200'), image_url[index]%>							
+								<span>
+								<%= link_to image_tag(thumb, height:'100'), image_url[index]%>							
 								</span>
 							<% end %>
 						<% end %>
