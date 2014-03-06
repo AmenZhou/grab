@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305041924) do
+ActiveRecord::Schema.define(version: 20140306021925) do
 
   create_table "post_dd_busitrans", force: true do |t|
     t.string   "title"
@@ -146,8 +146,8 @@ ActiveRecord::Schema.define(version: 20140305041924) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "up_time"
-    t.string   "image_url"
-    t.string   "image_thumb"
+    t.text     "image_url",   limit: 255
+    t.text     "image_thumb", limit: 255
   end
 
 end
