@@ -1,5 +1,37 @@
 <h1>大地360分类抓取结果页面</h1>
 
+<% if @fenlei_type == "dadi_housrent_flushing"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=11" %>
+<% elsif @fenlei_type == "dadi_housrent_manhattan"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=11" %>
+<% elsif @fenlei_type == "dadi_housrent_queens"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=11" %>
+<% elsif @fenlei_type == "dadi_housrent_brooklyn"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=11" %>
+<% elsif @fenlei_type == "dadi_housrent_elmhurst"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=11" %>			
+<% elsif @fenlei_type == "dadi_housale"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=12" %>
+<% elsif @fenlei_type == "dadi_recruit"%>
+	<% post_url = "http://jiatx999.com/f/post.php" %>
+<% elsif @fenlei_type == "dadi_restaurant_recruit"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=69" %>
+<% elsif @fenlei_type == "dadi_nails_recruit"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=68" %>
+<% elsif @fenlei_type == "dadi_massage_recruit"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=67" %>	
+<% elsif @fenlei_type == "dadi_car"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=200" %>
+<% elsif @fenlei_type == "dadi_busitran"%>
+	<% post_url = "http://jiatx999.com/f/post.php" %>
+<% else %>
+	<% post_url = "http://jiatx999.com/f/post.php" %>
+<% end %>
+
+<div style="margin:10px;">
+<%= link_to "点击发布分类信息", post_url, target: "_blank", class:"btn btn-primary"%>
+</div>
+
 <table id='post' class="table table-bordered table-responsive">
   <thead>
     <tr>
@@ -33,6 +65,12 @@
 					<td>房屋买卖</td>
 				<% elsif post.site_source == "dadi_recruit"%>
 					<td>招聘请人</td>
+				<% elsif post.site_source == "dadi_restaurant_recruit" %>
+					<td>餐馆请人</td>
+				<% elsif post.site_source == "dadi_nails_recruit" %>
+					<td>甲店请人</td>
+				<% elsif post.site_source == "dadi_massage_recruit" %>
+					<td>按摩推拿请人</td>
 				<% elsif post.site_source == "dadi_car"%>
 					<td>汽车买卖</td>
 				<% elsif post.site_source == "dadi_busitran"%>

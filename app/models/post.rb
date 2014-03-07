@@ -22,10 +22,13 @@ class Post < ActiveRecord::Base
 	elsif grab_source == 'dadi_busitran'
 		region_array = [{:id => 27, :name => ''}]		
 	elsif grab_source == 'dadi_recruit'
-		region_array = [{:id => 29, :name => 'Recruit employees'},
-						{:id => 57, :name => 'Restaurant'},
-						{:id => 56, :name => 'Nails and Barbor'},
-						{:id => 52, :name => 'Massage'}]		
+		region_array = [{:id => 29, :name => 'Recruit employees'}]
+	elsif grab_source == 'dadi_restaurant_recruit'
+		region_array = [{:id => 57, :name => 'Restaurant'}]
+	elsif grab_source == 'dadi_nails_recruit'
+		region_array = [{:id => 56, :name => 'Nails and Barbor'}]
+	elsif grab_source == 'dadi_massage_recruit'
+		region_array = [{:id => 52, :name => 'Massage'}]
 	elsif grab_source == 'dadi_car'
 		region_array = [{:id => 82, :name => ''}]
 	else
@@ -84,15 +87,16 @@ class Post < ActiveRecord::Base
 				post.image_thumb = ''
 				attach_block = doc.css('td[class="attachrow"]')
 				attach_block.each do |code|
-					next if code.css('a') == nil || code.css('img') == nil
-					image_download_url_t = code.css('a').attr('href').value[/^.*page/]
-					image_thumb_url_t = code.css('img').attr('src').value[/^.*thumb/]
-					
-					image_download_url = 'http://c.dadi360.com/' + image_download_url_t
-					image_thumb_url = 'http://c.dadi360.com/' + image_thumb_url_t
-					
-					post.image_url += image_download_url
-					post.image_thumb += image_thumb_url						
+					if code.css('a') == nil || code.css('img') == nil
+						image_download_url_t = code.css('a').attr('href').value[/^.*page/]
+						image_thumb_url_t = code.css('img').attr('src').value[/^.*thumb/]
+						
+						image_download_url = 'http://c.dadi360.com/' + image_download_url_t
+						image_thumb_url = 'http://c.dadi360.com/' + image_thumb_url_t
+						
+						post.image_url += image_download_url
+						post.image_thumb += image_thumb_url
+					end
 				end
 				
         post.save   
