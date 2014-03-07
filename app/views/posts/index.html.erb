@@ -1,5 +1,5 @@
 <h1>大地360分类抓取结果页面</h1>
-
+<span>点击项目名称可以排序，比如点击“发布时间”可以按照时间排序显示；右侧的搜索框可以对抓取结果进行筛选</span>
 <% if @fenlei_type == "dadi_housrent_flushing"%>
 	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=11" %>
 <% elsif @fenlei_type == "dadi_housrent_manhattan"%>
@@ -29,6 +29,7 @@
 <% end %>
 
 <div style="margin:10px;">
+<span>点击后直接跳转到家天下相关发布页面</span>
 <%= link_to "点击发布分类信息", post_url, target: "_blank", class:"btn btn-primary"%>
 </div>
 

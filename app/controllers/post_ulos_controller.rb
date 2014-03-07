@@ -4,6 +4,7 @@ class PostUlosController < ApplicationController
   # GET /post_ulos
   # GET /post_ulos.json
   def index
+		@fenlei_type = params[:select_source]
     @post_ulos = PostUlo.where(:site_source => params[:select_source]).order('upload_time desc').all
   end
 

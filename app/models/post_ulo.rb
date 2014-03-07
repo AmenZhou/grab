@@ -6,11 +6,9 @@ class PostUlo < ActiveRecord::Base
 			Post.where("up_time < ?", (Time.now - 7.day)).destroy_all
 	end
 	
-	def PostUlo::grab_ulo(grab_lines = 10, grab_source = 'ulo_housrent')
-		page_array = [1]
-		region_array = [{:id => 1, :name => ''}]
+	def PostUlo::find_fid(grab_source = 'ulo_housrent')
 		if grab_source == 'ulo_housrent'
-			fid_array = [{:id => 247, :name => 'Single Room'},
+			@fid_array = [{:id => 247, :name => 'Single Room'},
 				{:id => 246, :name => 'Whole House'},
 				{:id => 461, :name => 'Short Time'},
 				{:id => 394, :name => 'Else'},
@@ -18,7 +16,7 @@ class PostUlo < ActiveRecord::Base
 				{:id => 245, :name => 'Shop Rent'},
 				{:id => 249, :name => 'Office Rent'}]
 		elsif grab_source == 'ulo_housale'
-			fid_array = [{:id => 236, :name => 'Real estate'},
+			@fid_array = [{:id => 236, :name => 'Real estate'},
 				{:id => 237, :name => 'Whole House Sale'},
 				{:id => 239, :name => 'Department'},
 				{:id => 241, :name => 'Condo'},
@@ -26,31 +24,48 @@ class PostUlo < ActiveRecord::Base
 				{:id => 243, :name => 'Office'},
 				{:id => 242, :name => 'Public'},
 				{:id => 392, :name => 'Else'}]
-		elsif grab_source == 'ulo_busitran'
-			fid_array = [{:id => 288, :name => 'Restaurant Business'},
-				{:id => 289, :name => 'Nails Business'},
-				{:id => 292, :name => 'Massage Business'},
-				{:id => 290, :name => 'Laudary'},
-				{:id => 344, :name => 'Else'}]
-		elsif grab_source == 'ulo_recruit'
-			fid_array = [{:id => 253, :name => 'Restaurant Recruit'},
-					{:id => 256, :name => 'Nails Recruit'},
-					{:id => 254, :name => 'Massage Recruit'},
-					{:id => 263, :name => 'Else'},
-					{:id => 365, :name => 'Secretary'},
-					{:id => 443, :name => 'Barber'},
-					{:id => 260, :name => 'Driver'},
-					{:id => 364, :name => 'Clinic'},
-					{:id => 261, :name => 'Look for Job'}]
+		elsif grab_source == 'ulo_busitran_restaurant'
+			@fid_array = [{:id => 288, :name => 'Restaurant Business'}]
+		elsif grab_source == 'ulo_busitran_nails'
+			@fid_array = [{:id => 289, :name => 'Nails Business'}]
+		elsif grab_source == 'ulo_busitran_massage'	
+			@fid_array = [{:id => 292, :name => 'Massage Business'}]
+		elsif grab_source == 'ulo_busitran_laudary'
+			@fid_array = [{:id => 290, :name => 'Laudary'}]
+		elsif grab_source == 'ulo_busitran_else'
+			@fid_array =	[{:id => 344, :name => 'Else'}]
+		elsif grab_source == 'ulo_recruit_restaurant'
+			@fid_array = [{:id => 253, :name => 'Restaurant Recruit'}]
+		elsif grab_source == 'ulo_recruit_nails'	
+			@fid_array =	[{:id => 256, :name => 'Nails Recruit'}]
+		elsif grab_source == 'ulo_recruit_massage'
+			@fid_array =	[{:id => 254, :name => 'Massage Recruit'}]
+		elsif grab_source == 'ulo_recruit_else'
+			@fid_array =	[{:id => 263, :name => 'Else'}]
+		elsif grab_source == 'ulo_recruit_secretary'
+			@fid_array =	[{:id => 365, :name => 'Secretary'}]
+		elsif grab_source == 'ulo_recruit_barber'
+			@fid_array =	[{:id => 443, :name => 'Barber'}]
+		elsif grab_source == 'ulo_recruit_driver'
+			@fid_array =	[{:id => 260, :name => 'Driver'}]
+		elsif grab_source == 'ulo_recruit_clinic'
+			@fid_array =	[{:id => 364, :name => 'Clinic'}]
+		elsif grab_source == 'ulo_recruit_seek'	
+			@fid_array =	[{:id => 261, :name => 'Look for Job'}]
 		else
-			fid_array = [{:id => 247, :name => 'Single Room'},
+			@fid_array = [{:id => 247, :name => 'Single Room'},
 				{:id => 246, :name => 'Whole House'},
 				{:id => 461, :name => 'Short Time'},
 				{:id => 394, :name => 'Else'},
 				{:id => 460, :name => 'Wanna Rent'}]
-			grab_source = 'ulo_housrent'
 		end
+	end
+	
+	def PostUlo::grab_ulo(grab_lines = 10, grab_source = 'ulo_housrent')
+		page_array = [1]
+		region_array = [{:id => 1, :name => ''}]
 		
+		fid_array = find_fid(grab_source)
 		number = 0
 		arr_list = Array.new
 		code_list = PostUlo.where(:site_source => grab_source).map(&:unique_code)

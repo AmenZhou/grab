@@ -1,9 +1,49 @@
 <h1>美国生活在线-分类数据抓取结果</h1>
 <br/>
-<h3>点击项目名称可以排序，比如点击“发布时间”可以按照时间排序显示；
-<br/>
-右侧的搜索框可以对抓取结果进行筛选</h3>
-<table border="1" width="1000" id='post_ulo'>
+<span>点击项目名称可以排序，比如点击“发布时间”可以按照时间排序显示；右侧的搜索框可以对抓取结果进行筛选</span>
+
+<% if @fenlei_type == "ulo_housrent"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=11" %>
+<% elsif @fenlei_type == "ulo_housale"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=12" %>
+<% elsif @fenlei_type == "ulo_recruit_restaurant"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=69" %>
+<% elsif @fenlei_type == "ulo_recruit_nails"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=68" %>
+<% elsif @fenlei_type == "ulo_recruit_massage"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=67" %>	
+<% elsif @fenlei_type == "ulo_recruit_secretary"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=66" %>
+<% elsif @fenlei_type == "ulo_recruit_barber"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=68" %>
+<% elsif @fenlei_type == "ulo_recruit_driver"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=60" %>
+<% elsif @fenlei_type == "ulo_recruit_clinic"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=62" %>
+<% elsif @fenlei_type == "ulo_recruit_seek"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=57" %>
+<% elsif @fenlei_type == "ulo_recruit_else"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=57" %>
+<% elsif @fenlei_type == "ulo_busitran_restaurant"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=183" %>
+<% elsif @fenlei_type == "ulo_busitran_nails"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=184" %>
+<% elsif @fenlei_type == "ulo_busitran_massage"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=185" %>
+<% elsif @fenlei_type == "ulo_busitran_laudary"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=250" %>
+<% elsif @fenlei_type == "ulo_busitran_else"%>
+	<% post_url = "http://jiatx999.com/f/post.php?city_id=339&fid=252" %>	
+<% else %>
+	<% post_url = "http://jiatx999.com/f/post.php" %>
+<% end %>
+
+<div style="margin:10px;">
+<span>点击后直接跳转到家天下相关发布页面</span>
+<%= link_to "点击发布分类信息", post_url, target: "_blank", class:"btn btn-primary"%>
+</div>
+
+<table id='post_ulo' class="table table-bordered table-responsive">
   <thead>
     <tr>
       <th>标题</th>
@@ -13,9 +53,6 @@
       <th>内容</th>
       <th>联系电话</th>
       <th>价格/工资</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -23,80 +60,101 @@
     <% @post_ulos.each do |post_ulo| %>
       <tr>
         <td><%= post_ulo.title %></td>
-		<% if post_ulo.site_source == 'ulo_housrent'%>
-			<td>租房信息</td>
-		<% elsif post_ulo.site_source == 'ulo_housale'%>
-			<td>房屋买卖</td>
-		<% elsif post_ulo.site_source == 'ulo_busitran'%>
-			<td>生意转让</td>
-		<% elsif post_ulo.site_source == 'ulo_recruit'%>
-			<td>招聘请人</td>
-		<% else %>
-			<td><%= post_ulo.site_source %></td>
-		<% end %>
+				<% if post_ulo.site_source == 'ulo_housrent'%>
+					<td>租房信息</td>
+				<% elsif post_ulo.site_source == 'ulo_housale'%>
+					<td>房屋买卖</td>
+				<% elsif post_ulo.site_source == 'ulo_busitran_restaurant'%>
+					<td>餐馆转让</td>
+				<% elsif post_ulo.site_source == 'ulo_busitran_nails'%>
+					<td>甲店转让</td>
+				<% elsif post_ulo.site_source == 'ulo_busitran_massage'%>
+					<td>按摩店转让</td>
+				<% elsif post_ulo.site_source == 'ulo_busitran_laudary'%>
+					<td>洗衣店转让</td>
+				<% elsif post_ulo.site_source == 'ulo_busitran_else'%>
+					<td>其他转让</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_restaurant'%>
+					<td>餐馆请人</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_nails'%>
+					<td>甲店请人</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_massage'%>
+					<td>按摩请人</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_else'%>
+					<td>其他请人</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_secretary'%>
+					<td>办公文员</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_barber'%>
+					<td>发廊请人</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_driver'%>
+					<td>司机请人</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_clinic'%>
+					<td>诊所请人</td>
+				<% elsif post_ulo.site_source == 'ulo_recruit_seek'%>
+					<td>找工作</td>
+				<% else %>
+					<td><%= post_ulo.site_source %></td>
+				<% end %>
 		
-		<% if post_ulo.ct_name == 'Single Room' %>
-			<td>单房出租</td>
-		<% elsif post_ulo.ct_name == 'Whole House' %>
-			<td>整房出租</td>
-		<% elsif post_ulo.ct_name == 'Short Time' %>
-			<td>短期租房</td>	
-		<% elsif post_ulo.ct_name == 'Else' %>
-			<td>其他</td>
-		<% elsif post_ulo.ct_name == 'Wanna Rent' %>
-			<td>求租房</td>
-		<% elsif post_ulo.ct_name == 'Real estate' %>
-			<td>地产中介</td>
-		<% elsif post_ulo.ct_name == 'Whole House Sale' %>
-			<td>整栋出售</td>
-		<% elsif post_ulo.ct_name == 'Department' %>
-			<td>公寓出售</td>
-		<% elsif post_ulo.ct_name == 'Condo' %>
-			<td>康斗出售</td>
-		<% elsif post_ulo.ct_name == 'Shop Sale' %>
-			<td>商铺出售</td>
-		<% elsif post_ulo.ct_name == 'Office' %>
-			<td>办公室出售</td>
-		<% elsif post_ulo.ct_name == 'Public' %>
-			<td>公展</td>
-		<% elsif post_ulo.ct_name == 'Restaurant Business'%>
-			<td>餐馆转让</td>
-		<% elsif post_ulo.ct_name == 'Nails Business'%>
-			<td>美甲店转让</td>
-		<% elsif post_ulo.ct_name == 'Massage Business'%>
-			<td>按摩店转让</td>
-		<% elsif post_ulo.ct_name == 'Laudary'%>
-			<td>洗衣房转让</td>
-		<% elsif post_ulo.ct_name == 'Restaurant Recruit'%>
-			<td>餐馆招人</td>		
-		<% elsif post_ulo.ct_name == 'Nails Recruit'%>	
-			<td>美甲招人</td>
-		<% elsif post_ulo.ct_name == 'Massage Recruit'%>	
-			<td>按摩招人</td>
-		<% elsif post_ulo.ct_name == 'Secretary'%>	
-			<td>办公室文员</td>
-		<% elsif post_ulo.ct_name == 'Barber'%>	
-			<td>美发招人</td>
-		<% elsif post_ulo.ct_name == 'Driver'%>
-			<td>招司机</td>
-		<% elsif post_ulo.ct_name == 'Clinic'%>	
-			<td>诊所招人</td>
-		<% elsif post_ulo.ct_name == 'Look for Job'%>
-			<td>求职</td>
-		<% elsif post_ulo.ct_name == 'Shop Rent'%>
-			<td>店面出租</td>
-		<% elsif post_ulo.ct_name == 'Office Rent'%>
-			<td>办公室出租</td>
-		<% else %>		
-			<td><%= post_ulo.ct_name %></td>
-		<% end %>
-		<td><%= post_ulo.up_time.strftime("%F") %></td>
+				<% if post_ulo.ct_name == 'Single Room' %>
+					<td>单房出租</td>
+				<% elsif post_ulo.ct_name == 'Whole House' %>
+					<td>整房出租</td>
+				<% elsif post_ulo.ct_name == 'Short Time' %>
+					<td>短期租房</td>	
+				<% elsif post_ulo.ct_name == 'Else' %>
+					<td>其他</td>
+				<% elsif post_ulo.ct_name == 'Wanna Rent' %>
+					<td>求租房</td>
+				<% elsif post_ulo.ct_name == 'Real estate' %>
+					<td>地产中介</td>
+				<% elsif post_ulo.ct_name == 'Whole House Sale' %>
+					<td>整栋出售</td>
+				<% elsif post_ulo.ct_name == 'Department' %>
+					<td>公寓出售</td>
+				<% elsif post_ulo.ct_name == 'Condo' %>
+					<td>康斗出售</td>
+				<% elsif post_ulo.ct_name == 'Shop Sale' %>
+					<td>商铺出售</td>
+				<% elsif post_ulo.ct_name == 'Office' %>
+					<td>办公室出售</td>
+				<% elsif post_ulo.ct_name == 'Public' %>
+					<td>公展</td>
+				<% elsif post_ulo.ct_name == 'Restaurant Business'%>
+					<td>餐馆转让</td>
+				<% elsif post_ulo.ct_name == 'Nails Business'%>
+					<td>美甲店转让</td>
+				<% elsif post_ulo.ct_name == 'Massage Business'%>
+					<td>按摩店转让</td>
+				<% elsif post_ulo.ct_name == 'Laudary'%>
+					<td>洗衣房转让</td>
+				<% elsif post_ulo.ct_name == 'Restaurant Recruit'%>
+					<td>餐馆招人</td>		
+				<% elsif post_ulo.ct_name == 'Nails Recruit'%>	
+					<td>美甲招人</td>
+				<% elsif post_ulo.ct_name == 'Massage Recruit'%>	
+					<td>按摩招人</td>
+				<% elsif post_ulo.ct_name == 'Secretary'%>	
+					<td>办公室文员</td>
+				<% elsif post_ulo.ct_name == 'Barber'%>	
+					<td>美发招人</td>
+				<% elsif post_ulo.ct_name == 'Driver'%>
+					<td>招司机</td>
+				<% elsif post_ulo.ct_name == 'Clinic'%>	
+					<td>诊所招人</td>
+				<% elsif post_ulo.ct_name == 'Look for Job'%>
+					<td>求职</td>
+				<% elsif post_ulo.ct_name == 'Shop Rent'%>
+					<td>店面出租</td>
+				<% elsif post_ulo.ct_name == 'Office Rent'%>
+					<td>办公室出租</td>
+				<% else %>		
+					<td><%= post_ulo.ct_name %></td>
+				<% end %>
+				<td><%= post_ulo.up_time.strftime("%F") %></td>
         <td><%= post_ulo.content %></td>
         <td><%= post_ulo.phone_n %></td>
         <td><%= post_ulo.rent_m %></td>
-        <td><%= link_to 'Show', post_ulo %></td>
-        <td><%= link_to 'Edit', edit_post_ulo_path(post_ulo) %></td>
-        <td><%= link_to 'Destroy', post_ulo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
