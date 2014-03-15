@@ -87,7 +87,7 @@ class Post < ActiveRecord::Base
 				post.image_thumb = ''
 				attach_block = doc.css('td[class="attachrow"]')
 				attach_block.each do |code|
-					if code.css('a') == nil || code.css('img') == nil
+					if code.css('a') != nil && code.css('img') != nil
 						image_download_url_t = code.css('a').attr('href').value[/^.*page/]
 						image_thumb_url_t = code.css('img').attr('src').value[/^.*thumb/]
 						
