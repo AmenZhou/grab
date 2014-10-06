@@ -61,7 +61,7 @@ class Post < ActiveRecord::Base
     arr_list.each do |unit|
       unless code_list.include? unit[:unique_code]
         post = Post.new
-        detail_url = 'http://c.dadi360.com/' + unit[:detail_url]
+        detail_url = 'http://c.dadi360.com' + unit[:detail_url]
         begin
           doc = Nokogiri::HTML(open(detail_url))
         rescue OpenURI::HTTPError
