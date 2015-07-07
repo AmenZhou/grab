@@ -1,4 +1,4 @@
-require_relative '../../lib/yelp'
+#require_relative '../../lib/yelp'
 class YelpGrab < ActiveRecord::Base
   def YelpGrab::grab
     begin_time = Time.now
