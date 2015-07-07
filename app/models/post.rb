@@ -74,7 +74,7 @@ class Post < ActiveRecord::Base
         content = doc.css('div[class="postbody"]').text.strip
         post.title = unit[:title]
         post.ct_name = unit[:ct_name]
-        post.up_time = DateTime.strptime(unit[:up_time], '%Y/%m/%d') unless unit[:up_time].nil?
+        post.up_time = parse_up_time unless unit[:up_time].nil?
         post.unique_code = unit[:unique_code]
         post.detail_url = detail_url
         post.upload_time = Date.today
@@ -106,6 +106,11 @@ class Post < ActiveRecord::Base
     end
     count
   end
-end
 
+  def self.parse_up_time
+    DateTime.strptime(unit[:up_time], '%Y/%m/%d')
+  rescue
+    unit[:up_time]
+  end
+end
 
