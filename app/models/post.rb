@@ -74,43 +74,43 @@ class Post < ActiveRecord::Base
         content = doc.css('div[class="postbody"]').text.strip
         post.title = unit[:title]
         post.ct_name = unit[:ct_name]
-        post.up_time = parse_up_time unless unit[:up_time].nil?
+        post.up_time = parse_up_time(unit[:up_time]) unless unit[:up_time].nil?
         post.unique_code = unit[:unique_code]
         post.detail_url = detail_url
         post.upload_time = Date.today
-        post.content = content
-        post.phone_n = content[/\d{3}.?\d{3}.?\d{4}/]
-        post.rent_m = content[/\$\d+/]
-        post.site_source = grab_source
-				
-				post.image_url = ''
-				post.image_thumb = ''
-				attach_block = doc.css('td[class="attachrow"]')
-				attach_block.each do |code|
-					begin 
-						image_download_url_t = code.css('a').attr('href').value[/^.*page/]
-						image_thumb_url_t = code.css('img').attr('src').value[/^.*thumb/]
-					rescue
-						next
-					end
-					image_download_url = 'http://c.dadi360.com/' + image_download_url_t
-					image_thumb_url = 'http://c.dadi360.com/' + image_thumb_url_t
-					
-					post.image_url += image_download_url
-					post.image_thumb += image_thumb_url
-				end
-				
-        post.save   
-        count += 1
-      end
-    end
-    count
-  end
+	post.content = content
+	post.phone_n = content[/\d{3}.?\d{3}.?\d{4}/]
+	post.rent_m = content[/\$\d+/]
+	post.site_source = grab_source
 
-  def self.parse_up_time
-    DateTime.strptime(unit[:up_time], '%Y/%m/%d')
+	post.image_url = ''
+	post.image_thumb = ''
+	attach_block = doc.css('td[class="attachrow"]')
+	attach_block.each do |code|
+	begin 
+	image_download_url_t = code.css('a').attr('href').value[/^.*page/]
+	image_thumb_url_t = code.css('img').attr('src').value[/^.*thumb/]
+	rescue
+	next
+	end
+	image_download_url = 'http://c.dadi360.com/' + image_download_url_t
+	image_thumb_url = 'http://c.dadi360.com/' + image_thumb_url_t
+
+	post.image_url += image_download_url
+	post.image_thumb += image_thumb_url
+	end
+
+	post.save   
+	count += 1
+	end
+	end
+	count
+	end
+
+  def self.parse_up_time time
+    DateTime.strptime(time, '%Y/%m/%d')
   rescue
-    unit[:up_time]
+    time
   end
 end
 
