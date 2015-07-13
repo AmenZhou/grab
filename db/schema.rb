@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20140720202430) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "up_time"
-    t.text     "image_url"
-    t.text     "image_thumb"
+    t.text     "image_url",   limit: 255
+    t.text     "image_thumb", limit: 255
   end
 
   create_table "yelp_grabs", force: true do |t|
