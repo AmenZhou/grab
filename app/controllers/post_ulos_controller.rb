@@ -13,12 +13,6 @@ class PostUlosController < ApplicationController
 		redirect_to action: :index, :select_source => post_ulo_params[:grab_source]
   end
 	
-	def clear_ulo
-		PostUlo.clear_ulo
-		render 'posts/home'
-	end
-  # GET /post_ulos/1
-  # GET /post_ulos/1.json
   def show
   end
 
