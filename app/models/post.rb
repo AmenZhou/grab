@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   require "open-uri"
-  scope :old_data, -> { where("up_time < ?", (Time.now - 7.day)) }
+  scope :old_data, -> { where("created_at < ?", (Time.now - 7.day)) }
 
   def self.grab_dadi(grab_lines = 10, grab_source = 'dadi_housrent_flushing')
     page_array = [0]#[0,25,50,75,100]

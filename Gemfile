@@ -47,5 +47,6 @@ gem 'nokogiri'
 gem 'yelp'
 gem 'rails_12factor', group: :production
 gem 'byebug'
+gem 'pry', '0.9.12'
 gem 'pg', group: :production
 gem 'bootstrap-sass'
