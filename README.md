@@ -1,3 +1,3 @@
-== README
+# README
 
 ## My first RoR application
